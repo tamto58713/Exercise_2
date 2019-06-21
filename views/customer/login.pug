@@ -2,11 +2,15 @@ extends ../common
 block common    
     h3.mt-5.ml-2 Login
     .container(style="width: 500px; margin-left: 20px")
-        form.form-inline(method="POST")
-            label(for="email") Email:
-            input.form-control.ml-auto(name="email", type="text", id="email")
-        form.form-inline(method="POST")
-            label(for="password") Password:
-            input.form-control.ml-auto(name="password", type="password", id="password")
-        button.btn.btn-success Login
-    
+        form(action="/customer/login" method="POST")
+            if status
+                each stt in status
+                    .alert.alert-danger= stt
+            .form-group
+                label(for="email") Email:
+                input.form-control.ml-auto(name="email", type="text", id="email")
+            .form-group
+                label(for="password") Password:
+                input.form-control.ml-auto(name="password", type="password", id="password")
+            button.btn.btn-success Login
+        
