@@ -2,7 +2,7 @@ extends ../common
 block common    
     h3.mt-5.ml-2 Login
     .container(style="width: 500px; margin-left: 20px")
-        form(action="/customer/login" method="POST")
+        form(action="/auth/login" method="POST")
             if status
                 each stt in status
                     .alert.alert-danger= stt
