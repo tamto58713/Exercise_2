@@ -1,0 +1,30 @@
+extends ../common 
+block common
+    .container-fluid
+        h3.mt-5 Customers
+        .row
+            .col-sm-1 
+                a(href="#") Card View
+            .col-sm-1 
+                a(href="/customer/listview") List View
+            .col-sm-2 
+                a(href="#") Add Customer
+            .col-sm-3.offset-sm-5
+                form.form-inline(action="", method="POST")
+                    label.mr-2(for="name") Filter:
+                    input.form-control(name="name", id="name")
+
+        .card.mb-3.mt-5(style='max-width: 200px;')
+            .row.no-gutters
+                .col-md-4
+                    img.card-img(src='...', alt='...')
+                .col-md-8
+                    .card-body
+                        h5.card-title 
+                            a(href="/customer/editCustomer") Name
+                        p.card-text Address
+                        p.card-text
+                            small.text-muted oders ()
+
+
+    

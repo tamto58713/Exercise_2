@@ -1,0 +1,38 @@
+extends ../common 
+block common
+    .container-fluid
+        h3.mt-5 Customers
+        .row
+            .col-sm-1 
+                a(href="#") Card View
+            .col-sm-1 
+                a(href="/customer/listview") List View
+            .col-sm-2 
+                a(href="#") Add Customer
+            .col-sm-3.offset-sm-5
+                form.form-inline(action="", method="POST")
+                    label.mr-2(for="name") Filter:
+                    input.form-control(name="name", id="name")
+        h1 list View
+
+        table.table
+            thead
+                tr
+                    th 
+                    th Name
+                    th Location
+                    th Orders
+                    th
+            tbody
+                each customer in customers
+                    tr
+                        td
+                            img(src="https://picsum.photos/75")
+                        td= customer.name
+                        td= customer.location
+                        td= customer.orders
+                        td
+                            form(action="/customer/delete" method="POST")
+                            button.btn.btn-danger(name="id", value= customer.id)  Delete
+                        
+                
