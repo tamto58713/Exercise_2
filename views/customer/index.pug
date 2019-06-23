@@ -4,27 +4,63 @@ block common
         h3.mt-5 Customers
         .row
             .col-sm-1 
-                a(href="/customer/index") Card View
+                a(href="/customer") Card View
             .col-sm-1 
                 a(href="/customer/listview") List View
             .col-sm-2 
                 a(href="#") Add Customer
             .col-sm-3.offset-sm-5
-                form.form-inline(action="", method="POST")
+                form.form-inline(action="/customer/filterCard", method="GET")
                     label.mr-2(for="name") Filter:
-                    input.form-control(name="name", id="name")
+                    input.form-control(name="f", id="name", value = value ? value:"")
+        
+        .row
+            each customer in customers      
+                .card.ml-auto.mr-auto.mb-4(style="width: 24%; height: 150px")
+                    .card-header.text-center.bg-primary(style="min-height: 25%;")= customer.name
+                        button.btn.btn-primary.btn-sm(style="position: absolute; top: 0; right: 5px") x
+                    .card-body.d-flex
+                        img(src= customer.avatar, style="max-width: 50%; max-height: 100%; margin-left: -10px")
+                        div(style="flex: 80%").ml-3
+                            div(style="margin-top: -10px; margin-bottom: 20px")= customer.location
+                            if (customer.orders) > 1
+                                a(href="#")= customer.orders + " Orders"
+                            else
+                                a(href="#")= customer.orders + " Order"
 
-        .card.mb-3.mt-5(style='max-width: 200px;')
-            .row.no-gutters
-                .col-md-4
-                    img.card-img(src='...', alt='...')
-                .col-md-8
-                    .card-body
-                        h5.card-title 
-                            a(href="/customer/editCustomer") Name
-                        p.card-text Address
-                        p.card-text
-                            small.text-muted oders ()
+        nav(aria-label='...')
+                ul.pagination
+                    li.page-item(class= (currentPage === 1) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="fisrt" value=1) First
+
+                    li.page-item(class= (currentPage === 1) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="prev" value=currentPage - 1) Previous
+
+                    li.page-item(class= (currentPage === 1) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href="#" name="page" value= currentPage - 1)= currentPage - 1
+
+                    li.page-item.active
+                        form(method="GET")   
+                            button.page-link(href='#', name="page" value=currentPage)= currentPage
+
+                    li.page-item
+                        form(method="GET")    
+                            button.page-link(href='#', name="page" value=currentPage + 1)= currentPage + 1
+
+                    li.page-item(class= (currentPage > Math.round(customers.length/itemPerPage  - 1)) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="next" value=currentPage + 1) Next
+
+                    li.page-item(class= (currentPage > Math.round(customers.length/itemPerPage  - 1)) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="last" value=-1) Last
+
+
+                            
+                            
 
 
     

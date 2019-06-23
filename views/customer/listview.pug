@@ -4,13 +4,13 @@ block common
         h3.mt-5 Customers
         .row
             .col-sm-1 
-                a(href="#") Card View
+                a(href="/customer") Card View
             .col-sm-1 
                 a(href="/customer/listview") List View
             .col-sm-2 
                 a(href="#") Add Customer
             .col-sm-3.offset-sm-5
-                form.form-inline(action="/customer/filter", method="POST")
+                form.form-inline(action="/customer/filter", method="GET")
                     label.mr-2(for="name") Filter:
                     input.form-control(name="f", id="name", value = value ? value:"")
         h1 List View

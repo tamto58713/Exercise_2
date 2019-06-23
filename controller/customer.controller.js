@@ -1,11 +1,13 @@
 const db = require('../db')
+const pagination = require("../middleware/pagination")
+const filter = require("../middleware/filter")
 // db.defaults({user: {} })    
 //   .write()
 
 var customers = db.get('customers').value();
 
 module.exports.index = (req, res) => {
-    res.render('customer/index')
+    res.render('customer', { customers: pagination.customersPage, itemPerPage: pagination.currentPage, currentPage: pagination.currentPage})
 }
 module.exports.login = (req, res) => {
     res.render('customer/login');
@@ -19,14 +21,23 @@ module.exports.delete = (req, res) => {
     })
     res.render('customer/listview', {customers: customers})
 }
-module.exports.filture = (req, res) => {
-    const value = req.body.f;
-    filter = customers.filter((customer) => {
-        return (customer.name.toLowerCase().indexOf(req.body.f.toLowerCase()) !== -1 ||
-        customer.location.toLowerCase().indexOf(req.body.f.toLowerCase()) !== -1)
-    })
-    res.render('customer/listview', {customers: filter, value: value})
+module.exports.filter = (req, res) => {
+    value = req.query.f;
+    res.render('customer/listview', {customers: filter.filter(value), value: filter.value})
 }
+module.exports.filterCard = (req, res) => {
+    const value = req.query.f;
+    filter = customers.filter((customer) => {
+        return (customer.name.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
+        customer.location.toLowerCase().indexOf(value.toLowerCase()) !== -1)
+    })
+    res.render('customer', {customers: filter, value: value})
+}
+
+module.exports.page = (req, res) => {
+ 
+}
+
 module.exports.postLogin = (req, res) => {
     res.render('/customer')
 }
