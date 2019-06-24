@@ -1,3 +1,4 @@
+const db = require("../db")
 module.exports.requireLogin = (req, res, next) => {
     if (!req.cookies.userId)
     {

@@ -15,7 +15,7 @@ block common
                     input.form-control(name="f", id="name", value = value ? value:"")
         
         .row
-            each customer in customers      
+            each customer in customersPage      
                 .card.ml-auto.mr-auto.mb-4(style="width: 24%; height: 150px")
                     .card-header.text-center.bg-primary(style="min-height: 25%;")= customer.name
                         button.btn.btn-primary.btn-sm(style="position: absolute; top: 0; right: 5px") x

@@ -8,6 +8,7 @@ const customerRoute = require("./router/customer.route");
 const authRoute = require("./router/auth.route")
 
 
+
 app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -28,5 +29,4 @@ app.use('/auth', authRoute)
 
 app.listen(port, () => {
     console.log("App listening on port " + port);
-    console.log(md5("tamtotran5667"))
 })
