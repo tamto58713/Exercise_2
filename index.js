@@ -7,7 +7,9 @@ var md5 = require('md5');
 const customerRoute = require("./router/customer.route");
 const authRoute = require("./router/auth.route")
 
-
+const db = require("./db")
+var customers = db.get("customers").value();
+module.exports.customers = customers;
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -20,11 +22,15 @@ app.locals.currentUser = {name: ""}
 app.get('/', (req, res) => {
     res.render("")
 })
-app.get('/about', (req, res) => {
-    res.render("about")
+app.get('/about', (req, res) => { 
+    var cookie = req.headers.cookie || "";
+    var value = parseInt(cookie.slice(cookie.indexOf("=") + 1, cookie.length))
+    var currentUser = db.get("customers").find({id: value}).value() ||  ""
+    
+    res.render("about", {currentUser: currentUser})
 })
 
-app.use('/customer', customerRoute);
+app.use('/customers', customerRoute);
 app.use('/auth', authRoute)
 
 app.listen(port, () => {

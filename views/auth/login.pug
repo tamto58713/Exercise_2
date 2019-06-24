@@ -1,6 +1,8 @@
 extends ../common 
 block common    
-    h3.mt-5.ml-2 Login
+    h3.mt-5.ml-2
+        i.fas.fa-lock 
+        span  Login
     .container(style="width: 500px; margin-left: 20px")
         form(action="/auth/login" method="POST")
             if status

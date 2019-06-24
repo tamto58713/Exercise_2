@@ -1,0 +1,75 @@
+extends ../common 
+block common
+    .container-fluid
+        h3.mt-5 
+            i.far.fa-user
+            span  Customers
+        .row.mt-3
+            .col-sm-2 
+                a(href="/customers", style="text-decoration: none") 
+                    i.fas.fa-th-large
+                    span  Card View
+            .col-sm-2 
+                a(href="/customers/listview", style="text-decoration: none") 
+                    i.fas.fa-bars
+                    span  List View
+            .col-sm-2 
+                a(href="#", style="text-decoration: none") 
+                    i.fas.fa-plus
+                    span  Add Customer
+            .col-sm-3.offset-sm-3
+                form.form-inline(action="/customers/filterCard", method="GET")
+                    label.mr-2(for="name") Filter:
+                    input.form-control(name="f", id="name", value = value ? value:"")
+        
+        .row
+            each customer in customersPage      
+                .card.ml-auto.mr-auto.mb-4.col-sm-4.col-md-3.col-6(style="transform: scale(0.95) !important;")
+                    .card-header.text-center.bg-primary(style="transform: scale(1.11, 1);min-height: 25%, min-width: 100% !important")= customer.name
+                        button.btn.btn-primary.btn-sm(style="position: absolute; top: 0; right: 5px") x
+                    .card-body.d-flex
+                        img(src= customer.avatar, style="max-width: 50%; max-height: 100%; margin-left: -10px")
+                        div(style="flex: 80%").ml-3
+                            div(style="margin-top: -10px; margin-bottom: 20px")= customer.location
+                            if (customer.orders) > 1
+                                a(href="#")= customer.orders + " Orders"
+                            else
+                                a(href="#")= customer.orders + " Order"
+
+        nav(aria-label='...')
+                ul.pagination
+                    li.page-item(class= (currentPage === 1) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="fisrt" value=1) First
+
+                    li.page-item(class= (currentPage === 1) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="prev" value=currentPage - 1) Previous
+
+                    li.page-item(class= (tabPage * 3 - 2 === currentPage) ? "active":"")
+                        form(method="GET")
+                            button.page-link(href="#" name="page" value= tabPage * 3 - 2)= tabPage * 3 - 2
+
+                    li.page-item(class= (tabPage * 3 - 1 === currentPage) ? "active":"")
+                        form(method="GET")   
+                            button.page-link(href='#', name="page" value=tabPage * 3 - 1)= tabPage * 3 - 1
+
+                    li.page-item(class= (tabPage * 3 === currentPage) ? "active":"")
+                        form(method="GET")    
+                            button.page-link(href='#', name="page" value=tabPage * 3)= tabPage * 3
+
+                    li.page-item(class= (currentPage > Math.round(customers.length/itemPerPage  - 1)) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="next" value=currentPage + 1) Next
+
+                    li.page-item(class= (currentPage > Math.round(customers.length/itemPerPage  - 1)) ? "disabled":"")
+                        form(method="GET")
+                            button.page-link(href='#', name="last" value=-1) Last
+        h6= "Showing " + customersPage.length + " of " + customers.length + " total customers"
+
+
+                            
+                            
+
+
+    

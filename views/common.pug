@@ -4,16 +4,17 @@ html
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js')
         script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js')
-        link(rel="stylesheet", href="/static/css/styleLog.css")
+        link(rel="stylesheet", href="/static/css/style.css")
+        link(href="/fontawesome/css/all.min.css", rel="stylesheet")
     body
-        nav.navbar.navbar-expand-lg.navbar-light.bg-light
-            a.navbar-brand(href='#') Customer Management
+        nav.navbar.navbar-expand-lg.navbar-light.bg-primary
+            a.navbar-brand(href='/') Customer Management
             button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
                 span.navbar-toggler-icon
             #navbarSupportedContent.collapse.navbar-collapse
                 ul.navbar-nav.mr-auto
                     li.nav-item.mr-5.ml-5
-                        a.nav-link(href='/customer') Customer
+                        a.nav-link(href='/customers') Customers
                     li.nav-item.mr-5.ml-5
                         a.nav-link(href='#') Orders
                     li.nav-item.mr-5.ml-5
@@ -22,9 +23,9 @@ html
                     a(href="/auth/login")   
                         button.btn.btn-primary Login
                 else
-                    .user
-                    span.text-success.ml-5.mr-2= currentUser.name
+                    .user   
+                    span.text-warning.ml-5.mr-2(style="font-weight: bold")= currentUser.name
                     a(href="/auth/logout") 
-                        button.btn.btn-primary.btn-sm Logout
+                        button.btn.btn-primary.btn-sm(style="font-weight: bold") Logout
 
         block common

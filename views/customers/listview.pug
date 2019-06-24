@@ -1,0 +1,44 @@
+extends ../common 
+block common
+    .container-fluid
+        h3.mt-5 Customers
+        .row.mt-3
+            .col-sm-2 
+                a(href="/customers", style="text-decoration: none")
+                    i.fas.fa-th-large
+                    span  Card View 
+            .col-sm-2 
+                a(href="/customers/listview", style="text-decoration: none")
+                    i.fas.fa-bars
+                    span  List View
+            .col-sm-2 
+                a(href="#", style="text-decoration: none")
+                    i.fas.fa-plus
+                    span  Add Customer
+            .col-sm-3.offset-sm-3
+                form.form-inline(action="/customers/filter", method="GET")
+                    label.mr-2(for="name") Filter:
+                    input.form-control(name="f", id="name", value = value ? value:"")
+        h1 List View
+
+        table.table.table-striped
+            thead
+                tr
+                    th 
+                    th Name
+                    th Location
+                    th Orders
+                    th
+            tbody
+                each customer in customers
+                    tr
+                        td
+                            img(src= customer.avatar)
+                        td= customer.name
+                        td= customer.location
+                        td= customer.orders
+                        td
+                            form(action="/customers/delete" method="POST")
+                                button.btn.btn-danger(name="id", value=  customer.id)  Delete
+                        
+                
