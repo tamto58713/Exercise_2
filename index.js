@@ -23,8 +23,7 @@ app.get('/', (req, res, next) => {
 })
 app.get('/about', (req, res, next) => { 
     var user = require("./controller/auth.controller")
-    var currentUser = user.currentUser;
-    
+    var currentUser = user.currentUser || "";
     res.render("about", {currentUser: currentUser})
     next();
 })

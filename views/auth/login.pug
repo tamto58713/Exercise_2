@@ -3,7 +3,7 @@ block common
     h3.mt-5.ml-2
         i.fas.fa-lock 
         span  Login
-    .container(style="width: 500px; margin-left: 20px")
+    .container
         form(action="/auth/login" method="POST")
             if status
                 each stt in status
