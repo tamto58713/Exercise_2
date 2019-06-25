@@ -14,6 +14,6 @@ router.post('/delete', controller.delete);
 router.get('/:id/edit', controller.edit)
 router.post('/:id/edit', controller.postEdit)
 router.get("/:id/viewOrders", controller.viewOrders)
-router.get("/orders", controller.orders)
+router.get("/orders", requireLogin.requireLogin, controller.orders)
 
 module.exports = router
