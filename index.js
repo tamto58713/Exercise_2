@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+var port = process.env.PORT || 8080
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
 var md5 = require('md5');
