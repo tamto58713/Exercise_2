@@ -12,7 +12,7 @@ block common
             h5= "Oders for" + customer.first_name + " " + customer.last_name
             h6= customer.location
             h6= customer.city + " " + customer.state
-            table.table.table-striped.table-bordered(style="text-align: left")
+            table.table.table-striped.table-bordered(style="text-align: left").table-responsive
                 thead.bg-primary
                     tr
                         th Product
