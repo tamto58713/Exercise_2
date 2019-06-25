@@ -1,3 +1,6 @@
+* {
+    font-size: 2.5vh;
+}
 .navbar-brand {
     color: #ddd !important; 
     font-weight: bold;

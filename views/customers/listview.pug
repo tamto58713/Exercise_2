@@ -1,6 +1,6 @@
 extends ../common 
 block common
-    .container-fluid
+    .container
         h3.mt-5 Customers
         .row.mt-3
             .col-sm-2 
@@ -21,7 +21,7 @@ block common
                     input.form-control(name="f", id="name", value = value ? value:"")
         h1 List View
 
-        table.table.table-striped
+        table.table.table-striped.table-responsive
             thead
                 tr
                     th 
