@@ -18,7 +18,6 @@ app.set('view engine', 'pug')
 app.set('views', './views')
 app.locals.currentUser = {name: ""}
 app.get('/', (req, res, next) => {
-    res.sendStatus(200);
     res.render("");
     next();
 })
