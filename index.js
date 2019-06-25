@@ -17,8 +17,10 @@ app.use(cookieParser())
 app.set('view engine', 'pug')
 app.set('views', './views')
 app.locals.currentUser = {name: ""}
-app.get('/', (req, res) => {
-    res.render("")
+app.get('/', (req, res, next) => {
+    res.sendStatus(200);
+    res.render("");
+    next();
 })
 app.get('/about', (req, res) => { 
     var user = require("./controller/auth.controller")
