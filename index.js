@@ -30,7 +30,7 @@ app.get('/about', (req, res) => {
 
 app.use('/customers', customerRoute);
 app.use('/auth', authRoute)
-app.get('/favicon.ico', (req, res) => res.status(204));
+app.get('/favicon.ico', (req, res, next) => {res.status(204); next()});
 app.listen(port, () => {
     console.log("App listening on port " + port);
 })
