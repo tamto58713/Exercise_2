@@ -1,0 +1,6 @@
+{
+    "admins": [
+        {"id": 121, "firstName": "Tam To", "lastName": "Tran", "birthday":  "06/07/2000", "email": "tamtotran5667@gmail.com", "password": "mykalilinuxaccount"},
+        {}
+    ]
+}

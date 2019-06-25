@@ -1,5 +1,5 @@
 
-const db = require('../db')
+const db = require('../admins')
 
 module.exports.login = (req, res) => {
     res.render('auth/login')
@@ -9,7 +9,7 @@ module.exports.postLogin = (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     
-    const user = db.get("customers").find({email: email}).value()
+    const user = db.get("admins").find({email: email}).value()
     if (!user) {
         status.push("Wrong Email or Password!");
         res.render('auth/login', {status})

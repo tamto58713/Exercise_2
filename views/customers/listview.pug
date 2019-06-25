@@ -34,7 +34,8 @@ block common
                     tr
                         td
                             img(src= customer.avatar)
-                        td= customer.name
+                        td
+                            a(href= "/customers/" + customer.id + "/edit" style="color: #000; text-decoration: none")= customer.first_name + " " + customers.last_name
                         td= customer.location
                         td= customer.orders
                         td

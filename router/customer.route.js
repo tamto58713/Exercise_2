@@ -11,5 +11,9 @@ router.get('/listview', filter.filter,  pagination.page, controller.listView);
 router.get('/filter', filter.filter, controller.listView)
 router.get('/filterCard', filter.filter, pagination.page, controller.index)
 router.post('/delete', controller.delete);
+router.get('/:id/edit', controller.edit)
+router.post('/:id/edit', controller.postEdit)
+router.get("/:id/viewOrders", controller.viewOrders)
+router.get("/orders", controller.orders)
 
 module.exports = router

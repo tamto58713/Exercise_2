@@ -25,7 +25,8 @@ block common
         .row
             each customer in customersPage      
                 .card.ml-auto.mr-auto.mb-4.col-sm-4.col-md-3.col-6(style="transform: scale(0.95) !important;")
-                    .card-header.text-center.bg-primary(style="transform: scale(1.11, 1);min-height: 25%, min-width: 100% !important")= customer.name
+                    .card-header.text-center.bg-primary(style="transform: scale(1.11, 1);min-height: 25%, min-width: 100% !important")
+                        a(href= "/customers/" + customer.id + "/edit" style="color: #fff; text-decoration: none")= customer.first_name + " " + customer.last_name
                         button.btn.btn-primary.btn-sm(style="position: absolute; top: 0; right: 5px") x
                     .card-body.d-flex
                         img(src= customer.avatar, style="max-width: 50%; max-height: 100%; margin-left: -10px")

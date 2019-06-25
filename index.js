@@ -8,8 +8,6 @@ const customerRoute = require("./router/customer.route");
 const authRoute = require("./router/auth.route")
 
 const db = require("./db")
-var customers = db.get("customers").value();
-module.exports.customers = customers;
 
 app.use(express.static('public'))
 app.use(bodyParser.json())
@@ -23,9 +21,8 @@ app.get('/', (req, res) => {
     res.render("")
 })
 app.get('/about', (req, res) => { 
-    var cookie = req.headers.cookie || "";
-    var value = parseInt(cookie.slice(cookie.indexOf("=") + 1, cookie.length))
-    var currentUser = db.get("customers").find({id: value}).value() ||  ""
+    var user = require("./controller/auth.controller")
+    var currentUser = user.currentUser;
     
     res.render("about", {currentUser: currentUser})
 })

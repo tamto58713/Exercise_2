@@ -1,0 +1,35 @@
+extends ../common 
+block common
+    .container
+        h3 view Orders' customers
+        .row
+            form(method="GET").form-inline.col-md-4.offset-md-9
+                label(for="id").mr-3 ID of User
+                input.form-control(type="search", name="id", id="id", value= value ? value:"")
+                button.btn.btn-info View
+
+        if (customer)
+            h5= "Oders for" + customer.first_name + " " + customer.last_name
+            h6= customer.location
+            h6= customer.city + " " + customer.state
+            table.table.table-striped.table-bordered(style="text-align: left")
+                thead.bg-primary
+                    tr
+                        th Product
+                        th Date
+                        th Quantity
+                        th Unit Price
+                        th Total
+                tbody
+                    each product in products
+                        tr
+                            td= product.name
+                            td= product.date
+                            td= product.quantity
+                            td= "$" + product.unitPrice
+                            td= "$" + Math.round(product.quantity * product.unitPrice * 100) / 100
+                    tr
+                        td(colspan=4)
+                        td= "$" + total
+        else 
+            h5.text-warning Nothing 

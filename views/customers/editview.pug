@@ -1,0 +1,42 @@
+extends ../common 
+block common
+    .container.row
+        h2.col-sm-12 Edit customer    
+        h5.col-sm-12(style="font-weight: 600;")= customer.first_name + " " + customer.last_name
+            a(href= "viewOrders", style="font-weight: 400; font-size: 16px").ml-2 (View Orders)   
+        form(method="POST").col-sm-12
+            .form-group.form-inline.col-sm-7
+                label(for="firstName").mr-auto FirstName: 
+                input.form-control(name="first_name" type="text" id="firstName" value= customer.first_name).ml-auto
+            .form-group.form-inline.col-sm-7
+                label(for="lastName").mr-auto LastName: 
+                input.form-control(name="last_name" type="text" id="lastName" value= customer.last_name).ml-auto
+            .group-gender.col-sm-10
+                label Gender:
+                .form-group.form-inline.col-sm-5.offset-sm-5
+                    .form-check
+                        input.form-check-input(type="radio" name="gender" value="Male" id="male" checked= (customer.gender === "Male"))
+                        label.form-check-label(for="male") Male
+                .form-group.form-inline.col-sm-5.offset-sm-5
+                    .form-check
+                        input.form-check-input(type="radio" name="gender" value="Female" id="female" checked= (customer.gender === "Female"))
+                        label.form-check-label(for="female") Female
+
+            .form-group.form-inline.col-sm-7 
+                label.mr-auto(for="email") Email 
+                input.form-control(name="email" type="text" id="email" value= customer.email).ml-auto
+            .form-group.form-inline.col-sm-7
+                label.mr-auto(for="address") Address 
+                input.form-control(name="location" type="text" id="address" value= customer.location).ml-auto
+            .form-group.form-inline.col-sm-7
+                label.mr-auto(for="city") City: 
+                input.form-control(name="city" type="text" id="city" value= customer.city).ml-auto
+            .form-group.form-inline.col-sm-7
+                label.mr-auto(for="state") State: 
+                input.form-control(name="state" type="text" id="state" value= customer.state).ml-auto
+            .form-group.form-inline.col-sm-7
+                label.mr-auto(for="zip") Zip: 
+                input.form-control(name="zip" type="text" id="zip" value= customer.zip).ml-auto
+            .btn-group
+                button.btn.btn-primary.mr-3(type="submit", name="action", value="update") Update
+                button.btn.btn-danger(type="submit", name="action", value="delete") Delete
