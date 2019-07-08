@@ -45,6 +45,29 @@ module.exports.delete = (req, res) => {
     res.render('customers/listview', {customers: customersFilter, value: value})
 }
 
+module.exports.deleteCard = (req, res) => {
+    const db = require("../db")
+
+    var customersFilter = filter.customersFilter;
+    const currentUser = user.currentUser|| {firstName: ""}
+    const itemPerPage = pagination.itemPerPage
+    const customersPage = pagination.customersPage;
+    const currentPage = pagination.currentPage
+    const tabPage = pagination.tabPage;
+    const value = filter.value;
+    const id = parseInt(req.body.id)
+    customersFilter = customersFilter.filter((customer) => {
+        return customer.id !== id;
+    })
+
+    var customers = db.get("customers").value();
+
+    db.get('customers').remove({ id: id }).write()
+    res.render('customers', {customers: customers, currentPage: currentPage, 
+            itemPerPage: itemPerPage, customersPage: customersPage, value:value, currentUser: currentUser, tabPage: tabPage})
+    
+}
+
 module.exports.viewOrders = (req, res) => {
     const currentUser = user.currentUser|| {name: ""}
     const db = require("../db");
